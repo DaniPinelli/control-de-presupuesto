@@ -31,7 +31,7 @@ const NuevoPresupuesto = ({
 
                 </div>
 
-                <input type="submit" placeholder="Agregar" />
+                <input type="submit" value="Agregar" />
 
                 {mensaje && <Mensaje tipo="error" >{mensaje}</Mensaje>}
             </form>
