@@ -403,8 +403,8 @@ body .modal {
 
 .swipe-action__trailing {
     background-color: #db2777;
-    margin-bottom: 2rem;
     color: var(--blanco);
+    margin-bottom: 2rem;
 }
 
 .swipeable-list .swipe-action {
