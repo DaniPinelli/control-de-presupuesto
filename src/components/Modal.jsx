@@ -1,24 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Mensaje from './Mensaje'
 import CerrarBtn from '../img/cerrar.svg'
 
-const Modal = ({ setModal,
-    animarModal,
-    setAnimarModal,
-    guardarGasto,
+const Modal = ({
+    setModal, 
+    animarModal, 
+    setAnimarModal, 
+    guardarGasto, 
     gastoEditar,
-    setGasoEditar,
+    setGastoEditar
 }) => {
 
-    const [mensaje, setMensaje] = useState('')
+    const [mensaje, setMensaje] = useState('');
     const [nombre, setNombre] = useState('')
     const [cantidad, setCantidad] = useState('')
     const [categoria, setCategoria] = useState('')
-    const [id, setId] = useState('')
     const [fecha, setFecha] = useState('')
+    const [id, setId] = useState('')
 
     useEffect(() => {
-        if (Object.keys(gastoEditar).length > 0) {
+        if( Object.keys(gastoEditar).length > 0 ) {
             setNombre(gastoEditar.nombre)
             setCantidad(gastoEditar.cantidad)
             setCategoria(gastoEditar.categoria)
@@ -29,88 +30,90 @@ const Modal = ({ setModal,
 
     const ocultarModal = () => {
         setAnimarModal(false)
-        setGasoEditar({})
+        setGastoEditar({})
         setTimeout(() => {
             setModal(false)
-        }, 100);
+        }, 500);
     }
 
     const handleSubmit = e => {
-        e.preventDefault()
-        if ([nombre, cantidad, categoria].includes('')) {
+        e.preventDefault();
+
+        if([ nombre, cantidad, categoria ].includes('')) {
             setMensaje('Todos los campos son obligatorios')
 
             setTimeout(() => {
                 setMensaje('')
-            }, 4000);
-            return;
+            }, 3000)
+            return
         }
 
-        guardarGasto({ nombre, cantidad, categoria, id, fecha })
-    }
-
-    const eliminarGasto = id => {
-        console.log("eliminando gasto", id)
+        guardarGasto({nombre, cantidad, categoria, id, fecha})
     }
 
     return (
-        <div className="modal" >
-            <div className="cerrar-modal" >
-                <img
+        <div className="modal">
+            <div className="cerrar-modal">
+                <img 
                     src={CerrarBtn}
                     alt="cerrar modal"
                     onClick={ocultarModal}
                 />
             </div>
 
-            <form
+            <form 
                 onSubmit={handleSubmit}
-                className={`formulario ${animarModal ? "animar" : "cerrar"} `}
+                className={`formulario ${animarModal ? "animar" : 'cerrar'}`}
             >
-                <legend> {gastoEditar.nombre ? "Editar Gasto" : "Nuevo Gasto"} </legend>
+                <legend>{gastoEditar.nombre ? 'Editar Gasto' : 'Nuevo Gasto'}</legend>
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
-                <div className="campo" >
-                    <label htmlFor="nombre">Nombre</label>
-                    <input
-                        id='nombre'
+                <div className="campo">
+                    <label htmlFor="nombre">Nombre Gasto</label>
+
+                    <input 
+                        id="nombre"
                         type="text"
-                        placeholder='Nombre del Gasto'
+                        placeholder="Añade el Nombre del Gasto"
                         value={nombre}
-                        onChange={e => setNombre(e.target.value)}
+                        onChange={ e => setNombre(e.target.value)}
                     />
                 </div>
 
-                <div className="campo" >
+                <div className="campo">
                     <label htmlFor="cantidad">Cantidad</label>
-                    <input
-                        id='cantidad'
+
+                    <input 
+                        id="cantidad"
                         type="number"
-                        placeholder='Cantidad: ej. 500'
+                        placeholder="Añade La cantidad del gasto: ej. 300"
                         value={cantidad}
-                        onChange={e => setCantidad(Number(e.target.value))}
+                        onChange={ e => setCantidad(Number(e.target.value))}
                     />
                 </div>
-
-                <div className="campo" >
+                <div className="campo">
                     <label htmlFor="categoria">Categoría</label>
-                    <select id='categoria'
+
+                    <select
+                        id="categoria"
                         value={categoria}
-                        onChange={e => setCategoria(e.target.value)}
+                        onChange={ e => setCategoria(e.target.value)}
                     >
-                        <option value="select">--Select--</option>
+                        <option value="">-- Seleccione --</option>
                         <option value="ahorro">Ahorro</option>
-                        <option value="casa">Casa</option>
                         <option value="comida">Comida</option>
-                        <option value="gastos">Otros gastos</option>
+                        <option value="casa">Casa</option>
+                        <option value="gastos">Gastos Varios</option>
                         <option value="ocio">Ocio</option>
                         <option value="salud">Salud</option>
                         <option value="suscripciones">Suscripciones</option>
-
                     </select>
                 </div>
 
-                <input type="submit" value={gastoEditar.nombre ? "Guardar Cambios" : "Agregar"} />
+                <input
+                    type="submit"
+                    value={gastoEditar.nombre ? 'Guardar Cambios' : 'Añadir Gasto'}
+                />
 
             </form>
         </div>
