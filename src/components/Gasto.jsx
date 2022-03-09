@@ -8,7 +8,7 @@ import {
 } from 'react-swipeable-list'
 import "react-swipeable-list/dist/styles.css"
 
-import { formatearFecha } from '../helpers'
+import { formatearFecha } from '../helpers'
 
 import IconoAhorro from '../img/icono_ahorro.svg'
 import IconoCasa from '../img/icono_casa.svg'
@@ -19,16 +19,16 @@ import IconoSalud from '../img/icono_salud.svg'
 import IconoSuscripciones from '../img/icono_suscripciones.svg'
 
 const diccionarioIconos = {
-    ahorro : IconoAhorro,
-    comida : IconoComida,
-    casa : IconoCasa,
-    gastos : IconoGastos,
-    ocio : IconoOcio,
-    salud : IconoSalud,
-    suscripciones : IconoSuscripciones
+    ahorro: IconoAhorro,
+    comida: IconoComida,
+    casa: IconoCasa,
+    gastos: IconoGastos,
+    ocio: IconoOcio,
+    salud: IconoSalud,
+    suscripciones: IconoSuscripciones
 }
 
-const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
+const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
     const { categoria, nombre, cantidad, id, fecha } = gasto;
 
     const leadingActions = () => (
@@ -41,7 +41,7 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
 
     const trailingActions = () => (
         <TrailingActions>
-            <SwipeAction 
+            <SwipeAction
                 onClick={() => eliminarGasto(id)}
                 destructive={true}
             >
@@ -58,7 +58,7 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
             >
                 <div className="gasto sombra">
                     <div className="contenido-gasto">
-                        <img 
+                        <img
                             src={diccionarioIconos[categoria]}
                             alt="Icono Gasto"
                         />
@@ -66,7 +66,7 @@ const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
                             <p className="categoria">{categoria}</p>
                             <p className="nombre-gasto">{nombre}</p>
                             <p className="fecha-gasto">
-                                Agregado el: {''}
+                                Agregado: {''}
                                 <span>{formatearFecha(fecha)}</span>
                             </p>
                         </div>

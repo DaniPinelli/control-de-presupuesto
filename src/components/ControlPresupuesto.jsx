@@ -10,7 +10,7 @@ const ControlPresupuesto = ({
     setIsValidPresupuesto
 }) => {
 
-    const [porcentaje, setPorcentaje] = useState(10)
+    const [porcentaje, setPorcentaje] = useState(0)
     const [disponible, setDisponible] = useState(0)
     const [gastado, setGastado] = useState(0)
 
@@ -26,7 +26,7 @@ const ControlPresupuesto = ({
         setGastado(totalGastado)
         setTimeout(() => {
             setPorcentaje(nuevoPorcentaje)
-        }, 1500);
+        }, 400);
     }, [gastos])
 
 
@@ -38,7 +38,7 @@ const ControlPresupuesto = ({
     }
 
     const handleResetApp = () => {
-        const resultado = confirm('¿Deseas reiniciar presupuesto y gastos?');
+        const resultado = confirm('¿Reiniciar presupuesto y gastos?');
 
         if (resultado) {
             setGastos([])
